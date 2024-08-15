@@ -1,0 +1,56 @@
+version: "3.6"
+
+services:
+    tradedealer-db:
+        image: mysql:8.0.33
+        container_name: tradedealer-db
+        volumes:
+            - "./db_app:/var/lib/mysql"
+        environment:
+            MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+            MYSQL_DATABASE: ${MYSQL_DATABASE}
+            MYSQL_USER: ${MYSQL_USER}
+            MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+        ports:
+            - ${DB_PORT}:3306
+        env_file:
+            - ./.env
+        networks:
+            - symfony_app
+    tradedealer-php:
+        build:
+            context: ./php
+        container_name: tradedealer-php
+        volumes:
+            - ../:/var/www/symfony:cached
+            - ../var:/var/www/symfony/var
+            - ../vendor:/var/www/symfony/vendor
+        depends_on:
+            - tradedealer-db
+        networks:
+            - symfony_app
+        ports:
+            - 8088:8088
+
+    tradedealer-nginx:
+        build:
+            context: ./nginx
+            dockerfile: Dockerfile
+        container_name: tradedealer-nginx
+        volumes:
+            - ../:/var/www/symfony:cached
+            - ../var:/var/www/symfony/var
+            - ../vendor:/var/www/symfony/vendor
+        ports:
+            - ${PORT}:80
+        depends_on:
+            - tradedealer-php
+        networks:
+            - symfony_app
+
+networks:
+    symfony_app:
+        driver: bridge
+
+volumes:
+  db_app:
