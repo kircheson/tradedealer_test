@@ -51,13 +51,13 @@ class AppFixtures extends Fixture
 
         // Create Credit Programs
         $program1 = new CreditProgram();
-        $program1->setTitle('Standard Loan');
-        $program1->setInterestRate(3.5);
+        $program1->setTitle('Alfa Energy');
+        $program1->setInterestRate(12.3);
         $manager->persist($program1);
 
         $program2 = new CreditProgram();
-        $program2->setTitle('Premium Loan');
-        $program2->setInterestRate(2.8);
+        $program2->setTitle('T Energy');
+        $program2->setInterestRate(10.8);
         $manager->persist($program2);
 
         // Create Credit Requests
@@ -78,4 +78,5 @@ class AppFixtures extends Fixture
         $manager->flush();
     }
 }
+
 
