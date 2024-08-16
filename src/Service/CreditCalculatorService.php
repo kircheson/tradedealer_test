@@ -7,6 +7,16 @@ use Doctrine\ORM\EntityManagerInterface;
 
 class CreditCalculatorService
 {
+    // Минимальный ежемесячный платёж по ТЗ
+    const MONTHLY_MINIMUM = 9800;
+    // Первоначальный платёж по ТЗ
+    const DOWN_PAYMENT = 200000;
+    // Максимальный ежемесячный платёж по ТЗ
+    const MONTHLY_MAXIMUM = 10000;
+    // Максимальный срок кредита в месяцах
+    const MAXIMUM_LOAN_TERM = 60;
+    // Пример процентной ставки (12,3%)
+    const INTEREST_RATE = 0.123;
     private EntityManagerInterface $entityManager;
 
     public function __construct(EntityManagerInterface $entityManager)
@@ -36,30 +46,26 @@ class CreditCalculatorService
     {
         $repository = $this->entityManager->getRepository(CreditProgram::class);
 
-        // Расчет примерного ежемесячного платежа для проверки условия
         $loanAmount = $price - $initialPayment;
-        $monthlyRate = 0.123 / 12; // Используем 12.3% как пример
+        $monthlyRate = self::INTEREST_RATE / 12; // Используем 12.3% как пример
         $estimatedMonthlyPayment = $loanAmount * ($monthlyRate * pow(1 + $monthlyRate, $loanTerm)) / (pow(1 + $monthlyRate, $loanTerm) - 1);
 
-        if ($initialPayment > 200000 && $estimatedMonthlyPayment <= 10000 && $loanTerm < 60) {
-            // Ищем программу с процентной ставкой 12.3%
-            $program = $repository->findOneBy(['interestRate' => 12.3]);
+        if ($initialPayment > self::DOWN_PAYMENT && $estimatedMonthlyPayment <= self::MONTHLY_MAXIMUM && $loanTerm < self::MAXIMUM_LOAN_TERM) {
+            $program = $repository->findOneBy(['interestRate' => self::INTEREST_RATE * 100]);
             if ($program) {
                 return $program;
             }
         }
 
         // Если условия не выполнены или программа не найдена, ищем другую подходящую программу
-        // Здесь можно добавить дополнительную логику выбора программы, вне ТЗ тестового
         $programs = $repository->findAll();
         foreach ($programs as $program) {
             $monthlyPayment = $this->calculateMonthlyPayment($price, $initialPayment, $loanTerm, $program->getInterestRate());
-            if ($monthlyPayment >= 9800) {
+            if ($monthlyPayment >= self::MONTHLY_MINIMUM) {
                 return $program;
             }
         }
 
-        // Если ни одна программа не подошла, возвращаем null или первую доступную программу
         return $programs[0] ?? null;
     }
 

@@ -23,13 +23,13 @@ class CreditController extends AbstractController
         $loanTerm = $request->query->getInt('loanTerm');
 
         if (!$price || !$initialPayment || !$loanTerm) {
-            return $this->json(['error' => 'Missing required parameters'], 400);
+            return $this->json(['error' => 'Отсутствие необходимых параметров'], 400);
         }
 
         $initialPayment = floatval(str_replace(',', '.', $initialPayment));
 
         if ($initialPayment <= 0 || $initialPayment >= $price) {
-            return $this->json(['error' => 'Invalid initial payment'], 400);
+            return $this->json(['error' => 'Неверный первоначальный взнос'], 400);
         }
 
         if ($loanTerm <= 0 || $loanTerm > 120) {
