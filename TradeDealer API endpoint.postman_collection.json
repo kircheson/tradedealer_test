@@ -1,0 +1,557 @@
+{
+	"info": {
+		"_postman_id": "79aa4236-9df6-41d8-933b-bd3f6822451a",
+		"name": "TradeDealer API endpoint",
+		"description": "Тестирование endpoint’s в рамках ТЗ тестового задания",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "37712371"
+	},
+	"item": [
+		{
+			"name": "Credits",
+			"item": [
+				{
+					"name": "Расчет кредита по указанным параметрам из кредитной формы",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": [
+						{
+							"name": "Пример из ТЗ",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8084/api/v1/credit/calculate?price=1401000&initialPayment=200000.56&loanTerm=64",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8084",
+									"path": [
+										"api",
+										"v1",
+										"credit",
+										"calculate"
+									],
+									"query": [
+										{
+											"key": "price",
+											"value": "1401000"
+										},
+										{
+											"key": "initialPayment",
+											"value": "200000.56"
+										},
+										{
+											"key": "loanTerm",
+											"value": "64"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.21.6"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.3.10"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 16 Aug 2024 13:48:28 GMT"
+								},
+								{
+									"key": "X-Debug-Token",
+									"value": "3b05eb"
+								},
+								{
+									"key": "X-Debug-Token-Link",
+									"value": "http://localhost:8084/_profiler/3b05eb"
+								},
+								{
+									"key": "X-Robots-Tag",
+									"value": "noindex"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "GET, POST, DELETE, OPTIONS"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "APP-ORGANIZATION-ID,Authorization,DNT,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Range"
+								},
+								{
+									"key": "Access-Control-Expose-Headers",
+									"value": "Content-Length,Content-Range"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"programId\": 9,\n    \"interestRate\": 12.3,\n    \"monthlyPayment\": 25682,\n    \"title\": \"Alfa Energy\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Сохранение заявки с указанными параметрами из кредитной формы",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"carId\": 1,\n    \"programId\": 1,\n    \"initialPayment\": 50000,\n    \"loanTerm\": 36\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8084/api/v1/request",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8084",
+							"path": [
+								"api",
+								"v1",
+								"request"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "False",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"carId\": 3,\n    \"programId\": 1,\n    \"initialPayment\": 50000,\n    \"loanTerm\": 36\n}\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8084/api/v1/request",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8084",
+									"path": [
+										"api",
+										"v1",
+										"request"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.21.6"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.3.10"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 16 Aug 2024 13:57:44 GMT"
+								},
+								{
+									"key": "X-Debug-Token",
+									"value": "d405c8"
+								},
+								{
+									"key": "X-Debug-Token-Link",
+									"value": "http://localhost:8084/_profiler/d405c8"
+								},
+								{
+									"key": "X-Robots-Tag",
+									"value": "noindex"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "GET, POST, DELETE, OPTIONS"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "APP-ORGANIZATION-ID,Authorization,DNT,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Range"
+								},
+								{
+									"key": "Access-Control-Expose-Headers",
+									"value": "Content-Length,Content-Range"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": false\n}"
+						},
+						{
+							"name": "True",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"carId\": 9,\n    \"programId\": 1,\n    \"initialPayment\": 50000,\n    \"loanTerm\": 36\n}\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8084/api/v1/request",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8084",
+									"path": [
+										"api",
+										"v1",
+										"request"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.21.6"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.3.10"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 16 Aug 2024 13:57:44 GMT"
+								},
+								{
+									"key": "X-Debug-Token",
+									"value": "d405c8"
+								},
+								{
+									"key": "X-Debug-Token-Link",
+									"value": "http://localhost:8084/_profiler/d405c8"
+								},
+								{
+									"key": "X-Robots-Tag",
+									"value": "noindex"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "GET, POST, DELETE, OPTIONS"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "APP-ORGANIZATION-ID,Authorization,DNT,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Range"
+								},
+								{
+									"key": "Access-Control-Expose-Headers",
+									"value": "Content-Length,Content-Range"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": false\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Cars",
+			"item": [
+				{
+					"name": "Список автомобилей",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "Получение одного авто с детализированной информацией",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": [
+						{
+							"name": "СущID",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8084/api/v1/cars/1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8084",
+									"path": [
+										"api",
+										"v1",
+										"cars",
+										"1"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.21.6"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.3.10"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 16 Aug 2024 13:50:41 GMT"
+								},
+								{
+									"key": "X-Debug-Token",
+									"value": "41e07c"
+								},
+								{
+									"key": "X-Debug-Token-Link",
+									"value": "http://localhost:8084/_profiler/41e07c"
+								},
+								{
+									"key": "X-Robots-Tag",
+									"value": "noindex"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "GET, POST, DELETE, OPTIONS"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "APP-ORGANIZATION-ID,Authorization,DNT,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Range"
+								},
+								{
+									"key": "Access-Control-Expose-Headers",
+									"value": "Content-Length,Content-Range"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 9,\n    \"brand\": {\n        \"id\": 11,\n        \"name\": \"Toyota\"\n    },\n    \"model\": {\n        \"id\": 11,\n        \"name\": \"Corolla\"\n    },\n    \"photo\": \"toyota_corolla.jpg\",\n    \"price\": 25000\n}"
+						},
+						{
+							"name": "Не СущID",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8084/api/v1/cars/9",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8084",
+									"path": [
+										"api",
+										"v1",
+										"cars",
+										"9"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.21.6"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.3.10"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 16 Aug 2024 13:50:41 GMT"
+								},
+								{
+									"key": "X-Debug-Token",
+									"value": "41e07c"
+								},
+								{
+									"key": "X-Debug-Token-Link",
+									"value": "http://localhost:8084/_profiler/41e07c"
+								},
+								{
+									"key": "X-Robots-Tag",
+									"value": "noindex"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "GET, POST, DELETE, OPTIONS"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "APP-ORGANIZATION-ID,Authorization,DNT,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Range"
+								},
+								{
+									"key": "Access-Control-Expose-Headers",
+									"value": "Content-Length,Content-Range"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 9,\n    \"brand\": {\n        \"id\": 11,\n        \"name\": \"Toyota\"\n    },\n    \"model\": {\n        \"id\": 11,\n        \"name\": \"Corolla\"\n    },\n    \"photo\": \"toyota_corolla.jpg\",\n    \"price\": 25000\n}"
+						}
+					]
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "http://localhost:8084/",
+			"type": "string"
+		}
+	]
+}
