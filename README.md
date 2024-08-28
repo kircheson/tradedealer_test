@@ -35,7 +35,7 @@ Cтек: PHP 8+, Symfony, MySQL, Docker
 
 
 ## PS
-Коллекцией тестов:
+Коллекция тестов:
 **Postman TESTS API endpoints**
 
 Исходник ТЗ тестового задания:
